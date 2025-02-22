@@ -39,8 +39,16 @@ function TerroristsWin() {
 
 function StartTimer() {
     document.getElementById("THEEXPLOSION").innerHTML = '';
-    minutes = initialMinutes;
-    seconds = initialSeconds;
+    
+  
+    minutes = parseInt(initialMinutes, 10);
+    seconds = parseInt(initialSeconds, 10);
+
+    if (isNaN(minutes) || isNaN(seconds)) {
+        minutes = 0;  
+        seconds = 20;
+    }
+
     DecrementTimer();
     flashCount = 3;    
     clearInterval(refreshIntervalId);
@@ -49,6 +57,7 @@ function StartTimer() {
     refreshIntervalId2 = setInterval(FlashTimer, 50);
     PlayAudio('armbomb.wav');
 }
+
 
 function FlashTimer() {
     showTimer = !showTimer;    
