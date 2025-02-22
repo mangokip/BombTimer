@@ -13,7 +13,7 @@ var flashCount = 0;
 
 function PlayAudio(filename) {
     var audio = new Audio(filename);
-    audio.play();
+    audio.play().catch(error => console.log("Audio playback blocked:", error));
 }
 
 function Init() { 
@@ -23,8 +23,8 @@ function Init() {
     } else {
         bombDiv.innerHTML = '<img src="bomb.png" id="bomb" onclick="StartTimer()">';    
     }
-    bombDiv.innerHTML += '<div id="timerBG" class="lcdfont">00:00</div>';
-    bombDiv.innerHTML += '<div id="timer" class="lcdfont"></div>';
+    bombDiv.innerHTML += '<div id="timerBG" class="lcdfont">00:20</div>';
+    bombDiv.innerHTML += '<div id="timer" class="lcdfont">00:20</div>';
     document.getElementById("THEEXPLOSION").innerHTML = '';
 }
 
@@ -37,13 +37,8 @@ function TerroristsWin() {
 
 function StartTimer() {
     document.getElementById("THEEXPLOSION").innerHTML = '';
-    minutes = parseInt(initialMinutes, 10);
-    seconds = parseInt(initialSeconds, 10);
-    
-    if (isNaN(minutes) || isNaN(seconds)) {
-        minutes = 0;
-        seconds = 20;
-    }
+    minutes = initialMinutes;
+    seconds = initialSeconds;
 
     DecrementTimer();
     flashCount = 3;
@@ -65,26 +60,30 @@ function FlashTimer() {
 }
 
 function DecrementTimer() {
-    var text = minutes < 10 ? "0" + minutes : minutes;
-    text += ":";    
-    text += seconds < 10 ? "0" + seconds : seconds;    
+    if (seconds === 0 && minutes === 0) {
+        TerroristsWin();
+        return;
+    }
+
+    if (seconds === 0) {
+        minutes--;
+        seconds = 59;
+    } else {
+        seconds--;
+    }
+
+    var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+    var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    var text = formattedMinutes + ":" + formattedSeconds;
+    
+    document.getElementById("timer").innerHTML = text;
+    document.getElementById("timerBG").innerHTML = text;
+
     if (minutes === 0 && seconds <= 10 && seconds > 0) {
         PlayAudio('beep.wav');
     }
     if (minutes === 0 && seconds === 0) {
-        refreshIntervalId2 = setInterval(FlashTimer, 50);
         PlayAudio('doublebeep.wav');
-    }
-    document.getElementById("timer").innerHTML = text;        
-    if (seconds === -1 && minutes === 0) {
-        TerroristsWin();
-    }
-    if (minutes > 0 && seconds === 0) {
-        seconds = 60;
-        minutes--;
-    }
-    if (seconds > -1) {
-        seconds--;
     }
 }
 
