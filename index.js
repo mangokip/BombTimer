@@ -1,11 +1,11 @@
 // User settings
-var initialMinutes = 1;
-var initialSeconds = 0;
+var initialMinutes = 0;
+var initialSeconds = 20;
 var todayIsChristmas = true;
 
 // Global variables
-var minutes = 0;
-var seconds = 0;
+var minutes = initialMinutes;
+var seconds = initialSeconds;
 var refreshIntervalId = 0;
 var refreshIntervalId2 = 0;
 var showTimer = true;
@@ -20,10 +20,8 @@ function Init() {
     var bombDiv = document.getElementById("THEBOMB");
     if (todayIsChristmas) {
         bombDiv.innerHTML = '<img src="bomb_christmas.png" id="bomb" onclick="StartTimer()">';
-        bombDiv.style.left = "-20px";
     } else {
         bombDiv.innerHTML = '<img src="bomb.png" id="bomb" onclick="StartTimer()">';    
-        bombDiv.style.left = "30px";
     }
     bombDiv.innerHTML += '<div id="timerBG" class="lcdfont">00:00</div>';
     bombDiv.innerHTML += '<div id="timer" class="lcdfont"></div>';
@@ -39,13 +37,11 @@ function TerroristsWin() {
 
 function StartTimer() {
     document.getElementById("THEEXPLOSION").innerHTML = '';
-    
-  
     minutes = parseInt(initialMinutes, 10);
     seconds = parseInt(initialSeconds, 10);
-
+    
     if (isNaN(minutes) || isNaN(seconds)) {
-        minutes = 0;  
+        minutes = 0;
         seconds = 20;
     }
 
@@ -57,7 +53,6 @@ function StartTimer() {
     refreshIntervalId2 = setInterval(FlashTimer, 50);
     PlayAudio('armbomb.wav');
 }
-
 
 function FlashTimer() {
     showTimer = !showTimer;    
