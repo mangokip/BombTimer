@@ -1,6 +1,6 @@
 // User settings
-var initialMinutes = 0;
-var initialSeconds = 20;
+var initialMinutes = 60;
+var initialSeconds = 0;
 var todayIsChristmas = true;
 
 // Global variables
