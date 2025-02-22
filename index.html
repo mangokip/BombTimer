@@ -1,181 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Timer</title>
-		<link rel="stylesheet" href="style.css">
-	</head>
-	<body onload="Init()"> 
-		<div id="cuntainter">	
-			<script src="index.js"></script>		
-			<div id="THEBOMB"></div>		
-			<div id="THEEXPLOSION">
-			</div>		
-		</div>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bomb Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">    
+        <div id="THEBOMB"></div>        
+        <div id="THEEXPLOSION"></div>        
+    </div>
+    
+    <script src="index.js"></script>
+    <script>
+        window.onload = Init;
+    </script>
+</body>
 </html>
-
-<script>
-	 
-	// User settings
-	var initialMinutes = 00;
-	var initialSeconds = 20;
-	var todayIsChristmas = true;
-	
-	// Global varibles
-	var minutes = 0;
-	var seconds = 0;
-	var refreshIntervalId = 0;
-	var refreshIntervalId2 = 0;
-	var showTimer = true;
-	var flashCount = 0;
-	
-	function PlayAudio(filename) {
-		var audio = new Audio(filename).play();
-	}
-	 
-	function Init() { 
-		if (todayIsChristmas) {
-			document.getElementById("THEBOMB").innerHTML = '<img src="bomb_christmas.png" id="bomb" onclick="StartTimer()">';
-			document.getElementById("THEBOMB").style.left = "-20px";
-		} else {
-			document.getElementById("THEBOMB").innerHTML = '<img src="bomb.png" id="bomb" onclick="StartTimer()">';	
-			document.getElementById("THEBOMB").style.left = "30px";
-		}
-		document.getElementById("THEBOMB").innerHTML += '<div id="timerBG" class="lcdfont">00:00</div>';
-		document.getElementById("THEBOMB").innerHTML += '<div id="timer" class="lcdfont"> </div>';
-		document.getElementById("THEEXPLOSION").innerHTML = '';	
-	}
-	 
-	 function TerroristsWin() { 
-		document.getElementById("THEEXPLOSION").innerHTML = '<img src="explosion2.gif" id="explosion">';
-		document.getElementById("THEBOMB").innerHTML = '';
-		clearInterval(refreshIntervalId);
-		PlayAudio('explode.wav');
-	 }
-	 
-	function StartTimer() {
-		document.getElementById("THEEXPLOSION").innerHTML = '';
-		minutes = initialMinutes;
-		seconds = initialSeconds;
-		DecrementTimer();
-		flashCount = 3;	
-		clearInterval(refreshIntervalId);
-		clearInterval(refreshIntervalId2);
-		refreshIntervalId = setInterval(DecrementTimer, 1000);
-		refreshIntervalId2 = setInterval(FlashTimer, 50);
-		PlayAudio('armbomb.wav');
-	}
-
-	function FlashTimer() {
-		showTimer = !showTimer;	
-		if (showTimer) {		
-			document.getElementById("timer").style.visibility = "visible";
-		} 
-		else {		
-			document.getElementById("timer").style.visibility = "hidden";
-		}
-		flashCount--;	
-		if (flashCount == 0) {
-			document.getElementById("timer").style.visibility = "visible";
-			clearInterval(refreshIntervalId2);	
-		}	
-	}
-
-	function DecrementTimer() {
-		var text = minutes;
-		if (minutes < 10) {
-			text = "0" + text;
-		}
-		text += ":";	
-		if (seconds < 10) {
-			text += "0" + seconds;
-		} else {
-			text += seconds;	
-		}	
-		if (minutes == 0 && seconds <= 10 && seconds > 0) {
-			PlayAudio('beep.wav');
-		}
-		if (minutes == 0 && seconds == 0) {
-			refreshIntervalId2 = setInterval(FlashTimer, 50);
-			PlayAudio('doublebeep.wav');
-		}	
-		document.getElementById("timer").innerHTML = text;		
-		if (seconds == -1 && minutes == 0) {
-			TerroristsWin();
-		}		
-		if (minutes > 0) {
-			if (seconds == 0) {
-				seconds = 60;
-				minutes --;
-			}
-		}
-		if (seconds > -1) {
-			seconds--;
-		}
-	}
-
-	document.body.onkeyup = function(e) {
-		if (e.key == " " || e.code == "Space" || e.keyCode == 32 ) {	
-			PlayAudio('AK47_Fire1.wav');
-		}
-	}
-
-</script>
-
-
-<style>
-	@font-face {
-		font-family: "digital_7_mono";
-		src: url("digital_7_mono.ttf");
-	}
-	.lcdfont {
-		font-family: "digital_7_mono";
-	}
-	body {
-		margin = 0px;
-		padding = 0px;
-		background-color: #282828;
-	}
-	#cuntainter {
-		width: 1920px;
-		height: 1080px;
-		border:0px solid red;
-	}
-	#THEBOMB {
-		position: absolute;
-		left: 30px;
-	}	
-	#bomb {
-		width: 380px;
-		position: absolute;
-		top: 22px;
-		left: 1520px;
-	}
-	#explosion {
-		width: 2075px;
-		position: absolute;
-		top: -910px;
-		left:000px;
-		pointer-events: none;
-	}	
-	#timer {
-		color: red;
-		position: absolute;
-		top: 136px;
-		left: 1656.5px;
-		font-size: 40px;
-		pointer-events: none;
-		text-shadow: red 0 0 2px;
-	}
-	#timerBG {
-		color: #330000;
-		position: absolute;
-		top: 136px;
-		left: 1656.5px;
-		font-size: 40px;
-		pointer-events: none;
-	}
-</style>
