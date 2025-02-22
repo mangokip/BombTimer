@@ -25,7 +25,7 @@ function Init() {
     }
     bombDiv.innerHTML += '<div id="timerBG" class="lcdfont">00:00</div>';
     bombDiv.innerHTML += '<div id="timer" class="lcdfont"></div>';
-    document.getElementById("THEEXPLOSION").innerHTML = '';    
+    document.getElementById("THEEXPLOSION").innerHTML = '';
 }
 
 function TerroristsWin() { 
@@ -46,7 +46,7 @@ function StartTimer() {
     }
 
     DecrementTimer();
-    flashCount = 3;    
+    flashCount = 3;
     clearInterval(refreshIntervalId);
     clearInterval(refreshIntervalId2);
     refreshIntervalId = setInterval(DecrementTimer, 1000);
@@ -55,7 +55,7 @@ function StartTimer() {
 }
 
 function FlashTimer() {
-    showTimer = !showTimer;    
+    showTimer = !showTimer;
     document.getElementById("timer").style.visibility = showTimer ? "visible" : "hidden";
     flashCount--;    
     if (flashCount === 0) {
@@ -74,11 +74,11 @@ function DecrementTimer() {
     if (minutes === 0 && seconds === 0) {
         refreshIntervalId2 = setInterval(FlashTimer, 50);
         PlayAudio('doublebeep.wav');
-    }    
+    }
     document.getElementById("timer").innerHTML = text;        
     if (seconds === -1 && minutes === 0) {
         TerroristsWin();
-    }        
+    }
     if (minutes > 0 && seconds === 0) {
         seconds = 60;
         minutes--;
