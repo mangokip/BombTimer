@@ -29,11 +29,16 @@ function Init() {
 }
 
 function TerroristsWin() { 
-    document.getElementById("THEEXPLOSION").innerHTML = '<img src="explosion2.gif" id="explosion">';
-    document.getElementById("THEBOMB").innerHTML = '';
+    let explosionDiv = document.getElementById("THEEXPLOSION");
+
+    // Force reload the explosion GIF by appending a timestamp
+    explosionDiv.innerHTML = `<img src="explosion2.gif?${new Date().getTime()}" id="explosion">`;
+
+    document.getElementById("THEBOMB").innerHTML = ''; // Hide the bomb
     clearInterval(refreshIntervalId);
     PlayAudio('explode.wav');
 }
+
 
 function StartTimer() {
     document.getElementById("THEEXPLOSION").innerHTML = '';
@@ -65,19 +70,18 @@ function DecrementTimer() {
         return;
     }
 
-    if (seconds === 0) {
-        if (minutes > 0) {
-            minutes--;
-            seconds = 59;
-        }
-    } else {
-        seconds--;
+    if (seconds > 0) {
+        seconds--;  // Correctly decrement seconds
+    } else if (minutes > 0) {
+        minutes--;
+        seconds = 59;
     }
 
+    // Always format to two digits
     var formattedMinutes = minutes.toString().padStart(2, '0');
     var formattedSeconds = seconds.toString().padStart(2, '0');
     var text = formattedMinutes + ":" + formattedSeconds;
-    
+
     document.getElementById("timer").innerHTML = text;
     document.getElementById("timerBG").innerHTML = text;
 
@@ -88,6 +92,7 @@ function DecrementTimer() {
         PlayAudio('doublebeep.wav');
     }
 }
+
 
 document.body.onkeyup = function(e) {
     if (e.key === " " || e.code === "Space" || e.keyCode === 32) {    
