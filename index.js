@@ -66,4 +66,30 @@ function FlashTimer() {
 
 function DecrementTimer() {
     var text = minutes < 10 ? "0" + minutes : minutes;
-    text +=
+    text += ":";    
+    text += seconds < 10 ? "0" + seconds : seconds;    
+    if (minutes === 0 && seconds <= 10 && seconds > 0) {
+        PlayAudio('beep.wav');
+    }
+    if (minutes === 0 && seconds === 0) {
+        refreshIntervalId2 = setInterval(FlashTimer, 50);
+        PlayAudio('doublebeep.wav');
+    }
+    document.getElementById("timer").innerHTML = text;        
+    if (seconds === -1 && minutes === 0) {
+        TerroristsWin();
+    }
+    if (minutes > 0 && seconds === 0) {
+        seconds = 60;
+        minutes--;
+    }
+    if (seconds > -1) {
+        seconds--;
+    }
+}
+
+document.body.onkeyup = function(e) {
+    if (e.key === " " || e.code === "Space" || e.keyCode === 32) {    
+        PlayAudio('AK47_Fire1.wav');
+    }
+};
