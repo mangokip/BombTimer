@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "digital_7_mono";
+    src: url("digital_7_mono.ttf");
+}
+.lcdfont {
+    font-family: "digital_7_mono";
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #282828;
+}
+#container {
+    width: 1920px;
+    height: 1080px;
+}
+#THEBOMB {
+    position: absolute;
+    left: 30px;
+}    
+#bomb {
+    width: 380px;
+    position: absolute;
+    top: 22px;
+    left: 1520px;
+}
+#explosion {
+    width: 2075px;
+    position: absolute;
+    top: -910px;
+    left: 0;
+    pointer-events: none;
+}    
+#timer {
+    color: red;
+    position: absolute;
+    top: 136px;
+    left: 1656.5px;
+    font-size: 40px;
+    pointer-events: none;
+    text-shadow: red 0 0 2px;
+}
+#timerBG {
+    color: #330000;
+    position: absolute;
+    top: 136px;
+    left: 1656.5px;
+    font-size: 40px;
+    pointer-events: none;
+}
