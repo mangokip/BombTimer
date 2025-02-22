@@ -1,5 +1,5 @@
 // User settings
-var initialMinutes = 60;
+var initialMinutes = 1;
 var initialSeconds = 0;
 var todayIsChristmas = true;
 
