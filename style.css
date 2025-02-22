@@ -41,10 +41,10 @@ body {
 }
 #timerBG, #timer {
     position: absolute;
-    top: 47%;  /* Adjusted to properly center inside the black box */
-    left: 50%;
+    top: 70%;  /* Adjusted to properly center inside the black box */
+    left: 48%;
     transform: translate(-50%, -50%);
-    font-size: 85px; /* Bigger font for better alignment */
+    font-size: 60px; /* Bigger font for better alignment */
     color: red;
     text-shadow: 0 0 8px red;
     font-weight: bold;
