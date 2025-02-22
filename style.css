@@ -41,12 +41,12 @@ body {
 }
 #timerBG, #timer {
     position: absolute;
-    top: 46%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 70px;
+    font-size: 80px;
     color: red;
-    text-shadow: 0 0 5px red;
+    text-shadow: 0 0 8px red;
     font-weight: bold;
 }
 #timerBG {
