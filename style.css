@@ -15,7 +15,7 @@ body {
     height: 100vh;
 }
 #container {
-    width: 500px;
+    width: 600px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -29,22 +29,26 @@ body {
     display: inline-block;
 }
 #bomb {
-    width: 500px; /* Increase bomb size */
+    width: 600px;
 }
 #explosion {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px; /* Adjust to match bomb size */
+    width: 700px;
     pointer-events: none;
-}    
+}
 #timerBG, #timer {
     position: absolute;
-    top: 55%;
+    top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 50px;
+    font-size: 70px;
     color: red;
-    text-shadow: 0 0 2px red;
+    text-shadow: 0 0 5px red;
+    font-weight: bold;
+}
+#timerBG {
+    color: #330000;
 }
