@@ -1,10 +1,7 @@
 # Bomb Timer
 
 ![Screenshot](Screenshot.jpg)
-
-The bomb timer from the streams. One thing to note is that I never see it transparent or on screen like you do, 
-it's just a webpage that's embedded as a transparent layer into the final OBS output.
-
+NOT MY WORK. JUST A FORK SO I CAN RUN THIS ON GITHUB PAGES. ALL CREDITS TO https://github.com/livinamuk
 **Usage**
 
 ```js
