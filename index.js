@@ -60,20 +60,22 @@ function FlashTimer() {
 }
 
 function DecrementTimer() {
-    if (seconds === 0 && minutes === 0) {
+    if (minutes === 0 && seconds === 0) {
         TerroristsWin();
         return;
     }
 
     if (seconds === 0) {
-        minutes--;
-        seconds = 59;
+        if (minutes > 0) {
+            minutes--;
+            seconds = 59;
+        }
     } else {
         seconds--;
     }
 
-    var formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-    var formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+    var formattedMinutes = minutes.toString().padStart(2, '0');
+    var formattedSeconds = seconds.toString().padStart(2, '0');
     var text = formattedMinutes + ":" + formattedSeconds;
     
     document.getElementById("timer").innerHTML = text;
