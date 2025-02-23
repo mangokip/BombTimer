@@ -2,6 +2,9 @@
 
 ![Screenshot](Screenshot.jpg)
 NOT MY WORK. JUST A FORK SO I CAN RUN THIS ON GITHUB PAGES. ALL CREDITS TO https://github.com/livinamuk
+ONLY ORIGINAL CODE IS FOR INDEX.HTML AND SOME MODS TO THE SCRIPT FOR WEB USAGE
+
+
 **Usage**
 
 ```js
